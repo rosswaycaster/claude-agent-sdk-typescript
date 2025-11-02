@@ -16,6 +16,34 @@ Install the Claude Agent SDK:
 npm install @anthropic-ai/claude-agent-sdk
 ```
 
+## ? New Feature: Session History Retrieval
+
+Retrieve and analyze historical messages from Claude Code sessions! When resuming a session, you can now programmatically access the full conversation history.
+
+```typescript
+import { query, getSessionHistory } from '@anthropic-ai/claude-agent-sdk';
+
+// Start a session
+const session = query({ prompt: "Help me build a web app", options: {} });
+let sessionId;
+for await (const message of session) {
+  sessionId = message.session_id;
+}
+
+// Later, retrieve the full history
+const history = await getSessionHistory(sessionId);
+console.log(`Session has ${history.length} messages`);
+```
+
+**Key Features:**
+- ?? Retrieve complete conversation history from any session
+- ?? Filter messages by type (user, assistant, system, etc.)
+- ?? Get session metadata without loading all messages
+- ?? Memory-efficient streaming for large sessions
+- ?? Export sessions to various formats
+
+See the [Session History Documentation](./docs/SESSION_HISTORY.md) for complete details and examples.
+
 ## Migrating from the Claude Code SDK
 
 The Claude Code SDK is now the Claude Agent SDK. Please check out the [migration guide](https://docs.claude.com/en/docs/claude-code/sdk/migration-guide) for details on breaking changes.
