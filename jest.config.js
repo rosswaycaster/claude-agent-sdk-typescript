@@ -2,8 +2,8 @@
 export default {
   preset: 'ts-jest/presets/default-esm',
   testEnvironment: 'node',
-  roots: ['<rootDir>/src'],
-  testMatch: ['**/__tests__/**/*.test.ts'],
+  roots: ['<rootDir>/tests'],
+  testMatch: ['**/*.test.ts'],
   extensionsToTreatAsEsm: ['.ts'],
   moduleNameMapper: {
     '^(\\.{1,2}/.*)\\.js$': '$1',
@@ -17,9 +17,7 @@ export default {
     ],
   },
   collectCoverageFrom: [
-    'src/**/*.ts',
-    '!src/**/*.test.ts',
-    '!src/**/__tests__/**',
+    'lib/**/*.ts',
   ],
   coverageDirectory: 'coverage',
   coverageReporters: ['text', 'lcov', 'html'],
